@@ -56,38 +56,39 @@ export default function InsertEvent() {
           if (!values.participantID) {
             values.participantID = crypto.randomUUID();
           }
-          fetch('http://localhost:4001/participants', {
-            body: JSON.stringify(values, null, 2),
-            mode: "cors",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            method: "POST",
-          })
-          .then(response => response.json())
-            //show message to viewer like "event successfully added"
-          .then(text => {
-              if(text.message === 'duplicate key value violates unique constraint "participants_pkey"'){
-                alert("This participant ID is already taken. Please use a different one.")
-              }
-              else if(text.message === "Data successfully added."){
-                alert("The participant was added successfully!")
-              }
-              else{
-                alert("An error occurred adding this participant. Please try again.")
-              }
-              })
-          .catch((error) => {
-            //UUID error logging to user here
-            console.error("Error: ", error);
-          })
-          .finally(() => {
-            setTimeout(() => {
-              // alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-              resetForm({values: ''});
-            }, 400);
-          })
+          // TODO: APIGW
+        //   fetch('http://localhost:4001/participants', {
+        //     body: JSON.stringify(values, null, 2),
+        //     mode: "cors",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+        //     method: "POST",
+        //   })
+        //   .then(response => response.json())
+        //     //show message to viewer like "event successfully added"
+        //   .then(text => {
+        //       if(text.message === 'duplicate key value violates unique constraint "participants_pkey"'){
+        //         alert("This participant ID is already taken. Please use a different one.")
+        //       }
+        //       else if(text.message === "Data successfully added."){
+        //         alert("The participant was added successfully!")
+        //       }
+        //       else{
+        //         alert("An error occurred adding this participant. Please try again.")
+        //       }
+        //       })
+        //   .catch((error) => {
+        //     //UUID error logging to user here
+        //     console.error("Error: ", error);
+        //   })
+        //   .finally(() => {
+        //     setTimeout(() => {
+        //       // alert(JSON.stringify(values, null, 2));
+        //       setSubmitting(false);
+        //       resetForm({values: ''});
+        //     }, 400);
+        //   })
           }}
       >
 

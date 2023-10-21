@@ -1,5 +1,5 @@
 import InsertEvent from './InsertEvent';
-import InsertParticpant from './InsertParticipant';
+import InsertParticipant from './InsertParticipant';
 import DynamicTable from './Dynamictable';
 import React, { useState } from 'react';
 
@@ -38,7 +38,7 @@ export default function Home() {
             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', padding: '3rem'}}>
                 {/* Forms directly in the home page for now... maybe tabs or open on button click ? */}
                 <InsertEvent />
-                <InsertParticpant/> 
+                <InsertParticipant/> 
             </div>
             <button className = "viewEvents" onClick={toggleTableVisibility}>
                 {showTable ? 'Hide Tables' : 'View Tables'}
