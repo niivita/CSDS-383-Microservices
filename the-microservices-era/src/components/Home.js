@@ -16,8 +16,6 @@ export default function Home() {
 
     function invokeAPIGW(input1, input2){
        return function (input1, input2) {
-        
-    
         axios.get(`https://t6r6u8jln4.execute-api.us-east-1.amazonaws.com/Updating/exampleresource/?first_name=${input1}&last_name=${input2}`, {
           
         }
