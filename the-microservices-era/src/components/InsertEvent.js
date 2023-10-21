@@ -4,11 +4,6 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import './forms.css'
 
-//TODO: APIGW
-// const api = axios.create({
-//   baseURL: 'http://localhost:3000', // Replace with your actual backend server URL
-// });
-
 const formatTime = (time) => {
   // format time 
     // convert from 24 hr time to HH:MM AM/PM
