@@ -37,12 +37,12 @@ export default function InsertEvent() {
             errors.participantID ='Participant ID must be in proper UUID Format';
           }
 
-        //   // check UUID Form if eventID Input
-        //   if (!values.eventID){
-        //     errors.eventID = "Must include an Event ID"
-        //   } else if (values.eventID && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(values.eventID)){
-        //     errors.eventID ='Event ID must be in proper UUID Format';
-        //   } 
+          // check UUID Form if eventID Input
+          if (!values.eventID){
+            errors.eventID = "Must include an Event ID"
+          } else if (values.eventID && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(values.eventID)){
+            errors.eventID ='Event ID must be in proper UUID Format';
+          } 
 
           if (!values.name){
             errors.name = 'A name is required'
