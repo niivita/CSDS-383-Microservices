@@ -20,7 +20,6 @@ const formatTime = (time) => {
 }
 
 
-
 export default function InsertEvent() {
   return (
       <Formik
@@ -69,7 +68,7 @@ export default function InsertEvent() {
           values.time = formatTime(values.time);
 
           // post to APIGW (insert)
-          axios.get(`https://t6r6u8jln4.execute-api.us-east-1.amazonaws.com/Updating/events/?eventID=${values.eventID}&date=${values.date}&time=${values.time}&title=${values.title}&description=${values.description}&email=${values.email}`, {}
+          axios.get(`https://t6r6u8jln4.execute-api.us-east-1.amazonaws.com/main/events/?eventID=${values.eventID}&date=${values.date}&time=${values.time}&title=${values.title}&description=${values.description}&email=${values.email}`, {}
             ).then(function (response) {
               // handle success
               console.log(response);
@@ -79,7 +78,7 @@ export default function InsertEvent() {
               console.log(error);
             })
      
-          // TODO: APIGW
+          
         //   fetch('http://localhost:4001/events', {
         //     body: JSON.stringify(values, null, 2),
         //     mode: "cors",

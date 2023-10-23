@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import './forms.css'
 
@@ -8,15 +9,21 @@ export default function InsertEvent() {
 
   const [eventData, setEventData] = useState([]);
 
-  //TODO: APIGW
-//   useEffect(() => {
-//     const fetchEvents = async () => {
-//       const response = await fetch(`http://localhost:4001/events`);
-//       const newData = await response.json();
-//       setEventData(newData);
-//     };
-//     fetchEvents();
-//   }, []);
+
+  useEffect(() => {
+    // get dynamoDB contents of event table
+    axios.get(`https://t6r6u8jln4.execute-api.us-east-1.amazonaws.com/main/participants/`, {}
+    ).then(function (response) {
+    // handle success
+    console.log(response);
+    // setEventData(response);
+
+    })
+    .catch(function (error) {
+    // handle error
+    console.log(error);
+    })
+  }, []);
 
 
   return (
@@ -30,12 +37,12 @@ export default function InsertEvent() {
             errors.participantID ='Participant ID must be in proper UUID Format';
           }
 
-          // check UUID Form if eventID Input
-          if (!values.eventID){
-            errors.eventID = "Must include an Event ID"
-          } else if (values.eventID && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(values.eventID)){
-            errors.eventID ='Event ID must be in proper UUID Format';
-          } 
+        //   // check UUID Form if eventID Input
+        //   if (!values.eventID){
+        //     errors.eventID = "Must include an Event ID"
+        //   } else if (values.eventID && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(values.eventID)){
+        //     errors.eventID ='Event ID must be in proper UUID Format';
+        //   } 
 
           if (!values.name){
             errors.name = 'A name is required'
@@ -56,7 +63,18 @@ export default function InsertEvent() {
           if (!values.participantID) {
             values.participantID = crypto.randomUUID();
           }
-          // TODO: APIGW
+           // post to APIGW (insert)
+           axios.get(`https://t6r6u8jln4.execute-api.us-east-1.amazonaws.com/main/participants/?participantID=${values.participantID}&eventID=${values.eventID}&name=${values.name}&email=${values.email}`, {}
+           ).then(function (response) {
+             // handle success
+             console.log(response);
+           })
+           .catch(function (error) {
+             // handle error
+             console.log(error);
+           })
+
+
         //   fetch('http://localhost:4001/participants', {
         //     body: JSON.stringify(values, null, 2),
         //     mode: "cors",

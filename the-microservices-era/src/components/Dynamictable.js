@@ -1,27 +1,40 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const DynamicTable = () => {
   const [eventData, setEventData] = useState({});
   const [participantData, setParticipantData] = useState({});
 
   // on load, fetch from DB TODO: APIGW
-//   useEffect(() => {
+  useEffect(() => {
 
-//     const fetchEvents = async () => {
-//       const response = await fetch(`http://localhost:4001/events`);
-//       const newData = await response.json();
-//       setEventData(newData);
-//     };
+    // get dynamoDB contents of event table
+    axios.get(`https://t6r6u8jln4.execute-api.us-east-1.amazonaws.com/main/events/`, {}
+    ).then(function (response) {
+    // handle success
+    console.log(response);
+    // setEventData(response);
 
-//     const fetchParticipants = async () => {
-//       const response = await fetch(`http://localhost:4001/participants`);
-//       const newData = await response.json();
-//       setParticipantData(newData);
-//     };
+    })
+    .catch(function (error) {
+    // handle error
+    console.log(error);
+    })
 
-//     fetchEvents();
-//     fetchParticipants();
-//   }, []);
+    // get dynamoDB contents of participants table
+    axios.get(`https://t6r6u8jln4.execute-api.us-east-1.amazonaws.com/main/participants/`, {}
+    ).then(function (response) {
+    // handle success
+    console.log(response);
+    // setParticipantData(response);
+
+    })
+    .catch(function (error) {
+    // handle error
+    console.log(error);
+    })
+
+  }, []);
 
 // to properly update eventData
   useEffect(() => {
