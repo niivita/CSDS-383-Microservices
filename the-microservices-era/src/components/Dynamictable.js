@@ -11,37 +11,37 @@ const DynamicTable = () => {
     // get dynamoDB contents of event table
     axios.get(`https://t6r6u8jln4.execute-api.us-east-1.amazonaws.com/main/events/`, {}
     ).then(function (response) {
-    // handle success
-    console.log(response);
-    // setEventData(response);
+      // handle success
+      console.log(response);
+      setEventData(response.data);
 
     })
-    .catch(function (error) {
-    // handle error
-    console.log(error);
-    })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
 
     // get dynamoDB contents of participants table
     axios.get(`https://t6r6u8jln4.execute-api.us-east-1.amazonaws.com/main/participants/`, {}
     ).then(function (response) {
-    // handle success
-    console.log(response);
-    // setParticipantData(response);
+      // handle success
+      console.log(response);
+      // setParticipantData(response);
 
     })
-    .catch(function (error) {
-    // handle error
-    console.log(error);
-    })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
 
   }, []);
 
-// to properly update eventData
+  // to properly update eventData
   useEffect(() => {
     console.log("eventData updated:", eventData);
   }, [eventData]);
 
-// to properly update participantData
+  // to properly update participantData
   useEffect(() => {
     console.log("participantData updated:", participantData);
   }, [participantData]);
@@ -61,22 +61,22 @@ const DynamicTable = () => {
             </tr>
           </thead>
           <tbody>
-          {Object.keys(eventData).length === 0 ? (
+            {Object.keys(eventData) === 0 ? (
               <tr>
                 <td colSpan="6">No Events Added Yet!</td>
               </tr>
             ) : (
-              Object.keys(eventData).map((eventID) => {
+              Object.keys(eventData).map((index) => {
                 return (
-                  <tr key={eventID}>
-                    <td>{eventData[eventID].event_id}</td>
-                    <td>{eventData[eventID].event_date}</td>
-                    <td>{eventData[eventID].event_time}</td>
-                    <td>{eventData[eventID].event_title}</td>
-                    <td>{eventData[eventID].event_description}</td>
-                    <td>{eventData[eventID].event_host_email}</td>
+                  <tr key={index}>
+                    <td>{eventData[index].UUID}</td>
+                    <td>{eventData[index].Date}</td>
+                    <td>{eventData[index].Time}</td>
+                    <td>{eventData[index].Title}</td>
+                    <td>{eventData[index].Description}</td>
+                    <td>{eventData[index].Host_Email}</td>
                   </tr>
-                );
+                )
               })
             )}
           </tbody>
