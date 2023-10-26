@@ -74,7 +74,7 @@ const DynamicTable = () => {
                     <td>{eventData[index].Time}</td>
                     <td>{eventData[index].Title}</td>
                     <td>{eventData[index].Description}</td>
-                    <td>{eventData[index].Host_Email}</td>
+                    <td>{eventData[index].Email}</td>
                   </tr>
                 )
               })
