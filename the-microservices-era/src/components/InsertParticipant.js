@@ -12,11 +12,11 @@ export default function InsertEvent() {
 
   useEffect(() => {
     // get dynamoDB contents of event table
-    axios.get(`https://t6r6u8jln4.execute-api.us-east-1.amazonaws.com/main/participants/`, {}
+    axios.get(`https://t6r6u8jln4.execute-api.us-east-1.amazonaws.com/main/events/`, {}
     ).then(function (response) {
     // handle success
-    console.log(response);
-    // setEventData(response);
+    // console.log(response);
+    setEventData(response.data);
 
     })
     .catch(function (error) {
@@ -40,9 +40,10 @@ export default function InsertEvent() {
           // check UUID Form if eventID Input
           if (!values.eventID){
             errors.eventID = "Must include an Event ID"
-          } else if (values.eventID && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(values.eventID)){
-            errors.eventID ='Event ID must be in proper UUID Format';
           } 
+        // else if (values.eventID && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(values.eventID)){
+        //     errors.eventID ='Event ID must be in proper UUID Format';
+        //   } 
 
           if (!values.name){
             errors.name = 'A name is required'
@@ -72,7 +73,12 @@ export default function InsertEvent() {
            .catch(function (error) {
              // handle error
              console.log(error);
-           })
+           }) .finally(() => {
+                setTimeout(() => {
+                  setSubmitting(false);
+                  resetForm({values: ''})
+                }, 400);
+              })
 
 
         //   fetch('http://localhost:4001/participants', {
@@ -124,7 +130,8 @@ export default function InsertEvent() {
                 <Field as="select" name="eventID">
                   <option value="">Select an EventID</option>
                   {
-                    eventData.map(event => <option key={event.event_id} value={event.event_id}>{event.event_id}</option>)
+                    
+                    eventData.map(event => <option key={event.UUID} value={event.UUID}>{event.UUID}</option>)
                   }
                 </Field>
                 <ErrorMessage className="error" name='eventID' component="div"/>

@@ -14,22 +14,6 @@ export default function Home() {
         setShowTable((prevShowTable) => !prevShowTable);
     };
 
-    function invokeAPIGW(input1, input2){
-       return function (input1, input2) {
-        axios.get(`https://t6r6u8jln4.execute-api.us-east-1.amazonaws.com/Updating/exampleresource/?first_name=${input1}&last_name=${input2}`, {
-          
-        }
-        ).then(function (response) {
-            // handle success
-            console.log(response);
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          })
-        }
-    }
-
     return (
         <div>
             <h1 style={{marginTop: '4%'}}>Rocking Bussin Layered Architecture :)</h1>
@@ -42,13 +26,7 @@ export default function Home() {
                 {showTable ? 'Hide Tables' : 'View Tables'}
             </button>
             {showTable && <DynamicTable />}
-
-
-            {/* for testing initial connection with APIGW */}
-            <button onClick={invokeAPIGW("blah","blooh")}>
-                TEST APIGW
-            </button>
-
+            
         </div>
     );
 }

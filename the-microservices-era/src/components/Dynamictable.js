@@ -12,7 +12,7 @@ const DynamicTable = () => {
     axios.get(`https://t6r6u8jln4.execute-api.us-east-1.amazonaws.com/main/events/`, {}
     ).then(function (response) {
       // handle success
-      console.log(response);
+    //   console.log(response);
       setEventData(response.data);
 
     })
@@ -25,8 +25,8 @@ const DynamicTable = () => {
     axios.get(`https://t6r6u8jln4.execute-api.us-east-1.amazonaws.com/main/participants/`, {}
     ).then(function (response) {
       // handle success
-      console.log(response);
-      // setParticipantData(response);
+    //   console.log(response);
+      setParticipantData(response.data);
 
     })
       .catch(function (error) {
@@ -61,7 +61,7 @@ const DynamicTable = () => {
             </tr>
           </thead>
           <tbody>
-            {Object.keys(eventData) === 0 ? (
+            {Object.keys(eventData).length === 0 ? (
               <tr>
                 <td colSpan="6">No Events Added Yet!</td>
               </tr>
@@ -98,13 +98,13 @@ const DynamicTable = () => {
                 <td colSpan="6">No Participants Added Yet!</td>
               </tr>
             ) : (
-              Object.keys(participantData).map((id) => {
+              Object.keys(participantData).map((index) => {
                 return (
-                  <tr key={id}>
-                    <td>{participantData[id].p_event_uuid}</td>
-                    <td>{participantData[id].p_participant_uuid}</td>
-                    <td>{participantData[id].p_participant_name}</td>
-                    <td>{participantData[id].p_participant_email}</td>
+                  <tr key={index}>
+                    <td>{participantData[index].event_uuid}</td>
+                    <td>{participantData[index].participant_uuid}</td>
+                    <td>{participantData[index].name}</td>
+                    <td>{participantData[index].participant_email}</td>
                   </tr>
                 );
               })
