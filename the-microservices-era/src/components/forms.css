@@ -70,7 +70,7 @@ select {
 .container2 {
   flex: 1;
   border: 1px solid #ddd;
-  overflow: hidden;
+  overflow: scroll;
   max-height: 400px;
   margin: 20px;
   padding: 20px;

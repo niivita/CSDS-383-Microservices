@@ -41,9 +41,9 @@ export default function InsertEvent() {
           if (!values.eventID){
             errors.eventID = "Must include an Event ID"
           } 
-        // else if (values.eventID && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(values.eventID)){
-        //     errors.eventID ='Event ID must be in proper UUID Format';
-        //   } 
+        else if (values.eventID && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(values.eventID)){
+            errors.eventID ='Event ID must be in proper UUID Format';
+          } 
 
           if (!values.name){
             errors.name = 'A name is required'
@@ -71,6 +71,7 @@ export default function InsertEvent() {
              console.log(response);
            })
            .catch(function (error) {
+            alert("Duplicate ParticipantID Detected: Did not add participant")
              // handle error
              console.log(error);
            }) .finally(() => {
@@ -79,40 +80,6 @@ export default function InsertEvent() {
                   resetForm({values: ''})
                 }, 400);
               })
-
-
-        //   fetch('http://localhost:4001/participants', {
-        //     body: JSON.stringify(values, null, 2),
-        //     mode: "cors",
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //     },
-        //     method: "POST",
-        //   })
-        //   .then(response => response.json())
-        //     //show message to viewer like "event successfully added"
-        //   .then(text => {
-        //       if(text.message === 'duplicate key value violates unique constraint "participants_pkey"'){
-        //         alert("This participant ID is already taken. Please use a different one.")
-        //       }
-        //       else if(text.message === "Data successfully added."){
-        //         alert("The participant was added successfully!")
-        //       }
-        //       else{
-        //         alert("An error occurred adding this participant. Please try again.")
-        //       }
-        //       })
-        //   .catch((error) => {
-        //     //UUID error logging to user here
-        //     console.error("Error: ", error);
-        //   })
-        //   .finally(() => {
-        //     setTimeout(() => {
-        //       // alert(JSON.stringify(values, null, 2));
-        //       setSubmitting(false);
-        //       resetForm({values: ''});
-        //     }, 400);
-        //   })
           }}
       >
 

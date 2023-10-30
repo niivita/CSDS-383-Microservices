@@ -30,7 +30,6 @@ export default function InsertEvent() {
         if (values.eventID && !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(values.eventID)) {
           errors.eventID = 'Event ID must be in proper UUID Format';
         }
-        //TODO: VALID UUID CHECK [REGEX]
 
         if (!values.date) {
           errors.date = 'A date is required';
@@ -75,6 +74,7 @@ export default function InsertEvent() {
         })
           .catch(function (error) {
             // handle error
+            alert("Duplicate Event UUID Detected: Did not add event");
             console.log(error);
           }).finally(() => {
             setTimeout(() => {
@@ -82,42 +82,6 @@ export default function InsertEvent() {
               resetForm({ values: '' })
             }, 400);
           })
-
-
-        //   fetch('http://localhost:4001/events', {
-        //     body: JSON.stringify(values, null, 2),
-        //     mode: "cors",
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //     },
-        //     method: "POST",
-        //   })
-        //   .then((response) => 
-        //     response.json()
-        //   )
-        //     //show message to viewer like "event successfully added"
-        //   .then(text => {
-        //     if(text.message === 'duplicate key value violates unique constraint "events_pkey"'){
-        //       alert("This event ID is already taken. Please use a different one.")
-        //     }
-        //     else if(text.message === "Data successfully added."){
-        //       alert("The event was added successfully!")
-        //     }
-        //     else{
-        //       alert("An error occurred adding this event. Please try again.")
-        //     }
-        //     })
-        //   .catch((error) => {
-        //     //UUID error logging to user here
-        //     console.error("Error: ", error)
-        //   })
-        //   .finally(() => {
-        //     setTimeout(() => {
-        //       // alert(JSON.stringify(values, null, 2));
-        //       setSubmitting(false);
-        //       resetForm({values: ''})
-        //     }, 400);
-        //   })
       }}
     >
 
