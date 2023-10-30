@@ -69,7 +69,7 @@ const DynamicTable = () => {
               Object.keys(eventData).map((index) => {
                 return (
                   <tr key={index}>
-                    <td>{eventData[index].UUID}</td>
+                    <td>{eventData[index].EventID}</td>
                     <td>{eventData[index].Date}</td>
                     <td>{eventData[index].Time}</td>
                     <td>{eventData[index].Title}</td>

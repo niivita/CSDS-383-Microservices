@@ -65,7 +65,7 @@ export default function InsertEvent() {
             values.participantID = crypto.randomUUID();
           }
            // post to APIGW (insert)
-           axios.get(`https://t6r6u8jln4.execute-api.us-east-1.amazonaws.com/main/participants/?participantID=${values.participantID}&eventID=${values.eventID}&name=${values.name}&email=${values.email}`, {}
+           axios.post(`https://t6r6u8jln4.execute-api.us-east-1.amazonaws.com/main/participants/?participantID=${values.participantID}&eventID=${values.eventID}&name=${values.name}&email=${values.email}`, {}
            ).then(function (response) {
              // handle success
              console.log(response);

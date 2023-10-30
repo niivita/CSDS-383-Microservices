@@ -66,6 +66,7 @@ export default function InsertEvent() {
         }
         values.time = formatTime(values.time);
 
+        console.log(values.eventID)
         // post to APIGW (insert)
         axios.post(`https://t6r6u8jln4.execute-api.us-east-1.amazonaws.com/main/events/?eventID=${values.eventID}&date=${values.date}&time=${values.time}&title=${values.title}&description=${values.description}&email=${values.email}`, {}
         ).then(function (response) {
