@@ -90,7 +90,7 @@ public class Insert {
             try (CloseableHttpClient client = HttpClients.createDefault();
                  CloseableHttpResponse response = client.execute(httpGet)) {
 
-                System.out.println(response.getStatusLine().getStatusCode());
+                System.out.println("Event Status Code: " + response.getStatusLine().getStatusCode());
 
                 return prettyPrintJson(EntityUtils.toString(response.getEntity()));
             }
