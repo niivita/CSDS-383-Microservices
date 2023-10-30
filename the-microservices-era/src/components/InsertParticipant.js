@@ -97,8 +97,7 @@ export default function InsertEvent() {
                 <Field as="select" name="eventID">
                   <option value="">Select an EventID</option>
                   {
-                    
-                    eventData.map(event => <option key={event.UUID} value={event.UUID}>{event.UUID}</option>)
+                    eventData.map(event => <option key={event.EventID} value={event.EventID}>{event.EventID}</option>)
                   }
                 </Field>
                 <ErrorMessage className="error" name='eventID' component="div"/>
